@@ -75,3 +75,37 @@ class DiferentFactory implements FoodFactory {
         return new DifferentSushi();
     }
 }
+
+// -= Builder =-
+class LasañaBuilder {
+    size: string = "mediana";
+    cheese: string = "mozzarella";
+
+    setSize(size: string) {
+        this.size = size;
+        return this;
+    }
+
+    setCheese(cheese: string) {
+        this.cheese = cheese;
+        return this;
+    }
+
+    build(): Lasaña {
+        return new Lasaña(this);
+    }
+}
+
+class Lasaña {
+    private size: string;
+    private cheese: string;
+
+    constructor(builder: LasañaBuilder) {
+        this.size = builder.size;
+        this.cheese = builder.cheese;
+    }
+
+    describe(): void {
+        console.log(`Lasaña (${this.size} | ${this.cheese})`);
+    }
+}
