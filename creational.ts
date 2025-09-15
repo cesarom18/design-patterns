@@ -25,3 +25,53 @@ class FoodFactory {
         return new FoodTypes[type]();
     }
 }
+
+// -= Abstract Factory =-
+interface FoodFactory {
+    createPizza(): Pizza;
+    createSushi(): Sushi;
+}
+
+class OtherPizza extends Pizza {
+    prepare(): void {
+        console.log("Preparando otra pizza");
+    }
+}
+
+class DifferentPizza extends Pizza {
+    prepare(): void {
+        console.log("Preparando diferente pizza");
+    }
+}
+
+class OtherSushi extends Sushi {
+    prepare(): void {
+        console.log("Preparando otro sushi");
+    }
+}
+
+class DifferentSushi extends Sushi {
+    prepare(): void {
+        console.log("Preparando diferente sushi");
+    }
+}
+
+class OtherFactory implements FoodFactory {
+    createPizza(): Pizza {
+        return new OtherPizza();
+    }
+
+    createSushi(): Sushi {
+        return new OtherSushi();
+    }
+}
+
+class DiferentFactory implements FoodFactory {
+    createPizza(): Pizza {
+        return new DifferentPizza();
+    }
+
+    createSushi(): Sushi {
+        return new DifferentSushi();
+    }
+}
