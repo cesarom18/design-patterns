@@ -109,3 +109,26 @@ class Lasaña {
         console.log(`Lasaña (${this.size} | ${this.cheese})`);
     }
 }
+
+// -= Singleton =-
+class ConfigManager {
+    private static instance: ConfigManager;
+    private config: Record<string, any> = {};
+
+    private constructor() { }
+
+    static getInstance(): ConfigManager {
+        if (!ConfigManager.instance) {
+            ConfigManager.instance = new ConfigManager();
+        }
+        return ConfigManager.instance;
+    }
+
+    set(key: string, value: any) {
+        this.config[key] = value;
+    }
+
+    get(key: string) {
+        return this.config[key];
+    }
+}
